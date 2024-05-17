@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="main">
+  <%- include('./partials/nav') %>
+  <h1>Post</h1>
+    <!-- ? action is the route this form talks to-->
+      <form action="/mosses" method="POST">
+        <label for="commonName">Common Name:</label>
+        <input type="text" name="commonName" id="commonName">
+        <label for="latinName">Latin Name:</label>
+        <input type="text" name="latinName" id="latinName">
+        <label for="divison">Division:</label>
+        <input type="text" name="division" id="division">
+        <label for="growthForm">Growth Form:</label>
+        <input type="text" name="growthForm" id="growthForm">
+        <label for="image">Image URL:</label>
+        <input type="text" name="image" id="image">
+        <button type="submit">Add</button>
+
+      </form>
+</body>
+
+</html>
