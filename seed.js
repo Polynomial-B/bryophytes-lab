@@ -10,8 +10,7 @@ require('dotenv').config();
 const Moss = require('./models/moss.js')
 
 
-
-
+const bryophytesData = require('./seedData.js') 
 
 
 async function seed() {
@@ -23,16 +22,10 @@ async function seed() {
   console.log('Connection successful.')
 
   // ? CLEAR DATABASE 
-  await mongoose.conectiong.db.dropDatabase()
+  await mongoose.connection.db.dropDatabase()
 
   // ? ADD TO DATABASE
-  const test = await Moss.create({
-    commonName: "test",
-    latinName: "test",
-    division: "test",
-    growthForm: "test",
-    image: "test",
-  })
+  const test = await Moss.create(bryophytesData)
 
   console.log(test)
 
