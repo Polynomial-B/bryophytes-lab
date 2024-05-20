@@ -1,35 +1,63 @@
+
+
 body {
     background-color: aquamarine;
     display: flex;
-    height: 100vh;
-    width: 100vw;
-    margin: 0.5em auto;
     align-content: space-between;
     flex-direction: row;
     justify-content: center;
     font-family:Georgia, 'Times New Roman', Times, serif;
+    align-self: center;
+    justify-self: center;
 }
 
-.main{
+.main {
     display: flex;
-    flex-direction: row;
-    width: 100vw;
+    flex-direction: column;
+    margin: 0.5em 0;
+    align-items: flex-start;
+    background-color: rgb(116, 84, 84, 0.2);
+    padding: 1em;
+    box-shadow: 5px 7.5px rgba(13, 13, 13, 0.5);
+    border: 1px solid rgba(17, 17, 17, 0.6);
+    border-radius: 10px;
+    flex-basis: 60vw;
+    max-width: 500px;
+    align-self: center;
 }
 
 nav#nav {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    margin: 0.5em 0;
+    justify-content: space-evenly;
+    align-self: center;
+    width: 50vw;
+
 }
 
 a#nav-links {
-    color: blue;
+    color: rgb(24, 38, 18);
     display: flex;
     flex-direction: column;
+    align-self: center;
+    justify-content: space-evenly;
+    justify-self: center;
+    letter-spacing: 1.2px;
+
+}
+
+a#nav-links:hover {
+    color:rgb(138, 39, 183);
+    font-weight: 500;
 }
 
 h1 {
     display: flex;
     flex-direction: row;
+    margin: 0.2em 0 0 0;
+    width: 50vw;
+    color:rgb(5, 33, 13)
 }
 
 p {
@@ -37,21 +65,105 @@ p {
     flex-direction: row;
 }
 
-.main {
+
+
+ul {
     display: flex;
     flex-direction: column;
+    width: auto;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
-div {
+a {
+    color: rgb(24, 38, 18);
+}
+
+a:hover {
+    color:rgb(138, 39, 183);
+    font-weight: 500;
+}
+
+.description {
+    margin-top: 0.5em;
+}
+
+.img-div {
     display: flex;
-    flex-direction: column;
+    align-content: center;
+}
+
+img {
+    max-width: 500px;
+    height: inherit;
+    border-radius: 20px;
 }
 
 form {
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    margin: 0 auto;
     padding: 3px;
-    width: 30 vw;
-    height: 50vh;
+    width: 30vw;
+    height: 60vh;
+    justify-content: flex-start;
 }
+.button-div {
+    display: flex;
+    flex-direction: column;
+    border-top: 15px;
+}
+
+.submit-button {
+    display: flex;
+    align-self: flex-end;
+    background-color: rgb(164, 192, 172);
+    color: rgb(25, 25, 25);
+    border-radius: 2px;
+    padding: 5px;
+    width: 15vw;
+    margin: 1.5em 0 0;
+    justify-self: flex-end;
+    letter-spacing: 2px;
+}
+
+button {
+    display: flex;
+    flex-direction: column;
+}
+
+#delete {
+    display: flex;
+    align-content: flex-end;
+    justify-content: flex-end;
+    align-self: flex-end;
+    justify-self: flex-end;
+    flex-direction: row;
+    height: 1.3em;
+    margin: 0;
+}
+
+button:hover {
+    background-color: rgb(47, 47, 47);
+    color: rgb(164, 192, 172);
+    border: 2px solid rgb(5, 33, 13);
+}
+
+.form-div {
+    display: flex;
+    flex-direction: column;
+    letter-spacing: 1.5px;
+    margin: 0.5em 0;
+}
+
+input {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(26, 100, 66);
+    color: white;
+    padding: 5px;
+    letter-spacing: 2px;
+    margin: 0 0 0.5em;
+}
+
+

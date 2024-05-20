@@ -11,13 +11,32 @@
 <body>
   <div class="main">
     <%- include('./partials/nav') %>
-      <% console.log(moss) %>
-        <h1>
-          <%= moss.commonName %></a>
-        </h1>
-        <p>
-          <%= moss.latinName %>
-        </p>
+
+      <h1>
+        <%= moss.commonName %></a>
+      </h1>
+      <p>
+        (<%= moss.latinName %>)
+      </p>
+      <div class="img-div">
+        <% if ( moss.image !=="" ) { %>
+          <img src="<%=moss.image %>" alt="<%= moss.commonName%> close-up">
+          <% } else { %>
+            <em style="color: rgb(34, 98, 59)">No image currently available.</em>
+            <br>
+            <br>
+            <br>
+            <% } %>
+      </div>
+
+      <div class="description">
+        <%= moss.commonName %> is a <%= moss.division %> with a <%= moss.growthForm %> growth form.
+      </div>
+
+      <br>
+      <a href="/<%=moss._id%>/edit">Edit</a>
+      <form id="delete" action="/mosses/<%= moss._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete <%=moss.commonName%></button></form>
 
 
   </div>
