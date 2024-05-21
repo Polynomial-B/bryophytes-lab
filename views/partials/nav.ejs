@@ -1,5 +1,12 @@
 <nav id="nav">
   <a id="nav-links" href="/">Home</a>
   <a id="nav-links" href="/mosses">Bryophytes</a>
-  <a id="nav-links" href="/post">Post</a>
+  
+  <% if (user) { %>
+    <a id="nav-links" href="/post">Post</a>
+    <a id="nav-links" href="/auth/sign-out">Sign-out</a>
+    <% } else { %>
+    <a id="nav-links" href="/auth/sign-up">Sign-up</a>
+    <a id="nav-links" href="/auth/sign-in">Sign-in</a>
+    <% } %>
 </nav>

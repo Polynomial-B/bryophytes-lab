@@ -16,18 +16,22 @@
       <div class="form-div">
         <form action="/mosses" method="POST">
           <label for="commonName">Common Name:</label>
-          <input type="text" name="commonName" id="commonName">
+          <input type="text" name="commonName" id="commonName" required>
           <label for="latinName">Latin Name:</label>
-          <input type="text" name="latinName" id="latinName">
+          <input type="text" name="latinName" id="latinName" required>
           <label for="divison">Division:</label>
-          <input type="text" name="division" id="division">
+          <input type="text" name="division" id="division" required>
           <label for="growthForm">Growth Form:</label>
-          <input type="text" name="growthForm" id="growthForm">
+          <input type="text" name="growthForm" id="growthForm" required>
           <label for="image">Image URL:</label>
-          <input type="text" name="image" id="image">
+          <input type="url" name="image" id="image">
+          <% if (typeof errorMessage !== 'undefined') { %>
+            <p style="color: rgb(145, 0, 0)"><%= errorMessage %></p>
+          <% } %>
           <button class="submit-button" type="submit">Submit</button>
       </div>
       </form>
+      
 </body>
 
 </html>

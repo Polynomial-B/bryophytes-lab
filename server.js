@@ -1,6 +1,6 @@
 // ! SERVER.JS
 
-require('dotenv').config();
+require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const methodOverride = require("method-override")
@@ -9,31 +9,48 @@ const morgan = require("morgan")
 
 // ? REQUIRE MODEL
 const Moss = require('./models/moss')
-const port = 3000
+const port = process.env.PORT || 3000
 const app = express()
-const path = require("path");
+const path = require("path")
+const session = require("express-session")
+const authController = require("./controllers/auth.js")
+const MongoStore = require("connect-mongo");
 
-
-app.use(methodOverride("_method"));
-app.use(morgan("dev"))
-app.use(express.urlencoded({ extended: false }));
 mongoose.connect(process.env.MONGODB_URI)
 
+app.use(methodOverride("_method"))
+app.use(morgan("dev"))
+app.use(express.urlencoded({ extended: false }))
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")))
 
+app.use(
+    session({
+      secret: process.env.SESSION_SECRET,
+      resave: false,
+      saveUninitialized: true,
+    })
+);
 
+app.use(express.urlencoded({ extended: false}))
 
-// * PAGE RENDER -----------------------------------------
+app.use("/auth", authController);
+
+app.use(function (req, res, next) {
+    res.locals.user = req.session.user;
+    next();
+  });
+
 
 app.get('/', (req, res) => {
-    res.render('home.ejs')
+    res.render('home.ejs', {
+    })
 })
 
 app.get('/mosses', async (req, res) => {
     const allMoss = await Moss.find()
     res.render('index.ejs', {
-        allMoss: allMoss,
+        allMoss: allMoss
     })
 
 })
@@ -49,42 +66,41 @@ app.get('/mosses/:id', async (req, res) => {
 
 
 app.get('/post', (req, res) => {
-    res.render('post.ejs')
-})
-
-
-app.get('/mosses/:id/edit', async (req, res) => {
-    const id = req.params.id
-    const moss = await Moss.findById(id)
-
-    res.render(id/'edit.ejs', {
-        moss
+    res.render('post.ejs', {
+        user: req.session.user
     })
 })
 
-
-
-
-
-
+app.get('/users', async (req, res) => {
+    res.render('users.ejs', {
+        user: req.session.user
+    })
+})
 
 app.use(express.json())
 
-// * ----------------------------------------------------
-app.use(express.urlencoded({ extended: false}))
-// * ----------------------------------------------------
-
-
-// ! POST USING FORM
-
 app.post('/mosses', async (req, res) => {
-
-    // ? CREATE USING MONGOOSE
-    const newMoss = await Moss.create(req.body)
-
-    res.redirect(`/mosses/${newMoss._id}`)
-
-
+    try {
+        if (!req.body.commonName.trim()) {
+            throw new Error("'Common Name' cannot be empty!")
+        }
+        if (!req.body.latinName.trim()) {
+            throw new Error("'Latin Name' cannot be empty!")
+        }
+        if (!req.body.division.trim()) {
+            throw new Error("'Division' cannot be empty!")
+        }
+        if (!req.body.growthForm.trim()) {
+            throw new Error("'Growth Form' cannot be empty!")
+        }
+        const newMoss = await Moss.create(req.body)
+        res.redirect(`/mosses/${newMoss._id}`)
+    } catch (err) {
+        console.log(err.message)
+        res.render('post.ejs', {
+            errorMessage: err.message
+        })
+    }
 })
 
 
@@ -98,20 +114,20 @@ app.delete('/mosses/:mossId', async (req, res) => {
 
 })
 
-
 app.put('/mosses/:mossId', async (req, res) => {
 
     // ? ONE STEP
-    // ! below.. NEW: TRUE will render updated element
+    // ! below: { new: true } will render updated element
     const updatedMoss = await Moss.findByIdAndUpdate(req.params.mossId, req.body, { new: true })
+    
 
-    res.send(updatedMoss)
+    res.redirect(`${req.params.mossId}`)
 })
 
 
-app.get('mosses/:mossId/edit', async (req, res) => {
+app.get('/mosses/:mossId/edit', async (req, res) => {
     const foundMoss = await Moss.findById(req.params.mossId)
-    res.render('/edit/', {
+    res.render('edit.ejs', {
         moss: foundMoss,
     })
 })

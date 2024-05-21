@@ -30,14 +30,16 @@
       </div>
 
       <div class="description">
-        <%= moss.commonName %> is a <%= moss.division %> with a <%= moss.growthForm %> growth form.
+        <%= moss.division %> with a <%= moss.growthForm %> growth form.
       </div>
 
       <br>
-      <a href="/<%=moss._id%>/edit">Edit</a>
-      <form id="delete" action="/mosses/<%= moss._id %>?_method=DELETE" method="POST">
-        <button type="submit">Delete <%=moss.commonName%></button></form>
-
+      
+      <% if (user) { %>
+        <a href="/mosses/<%=moss._id%>/edit">Edit</a>
+      <form id="delete" action="/mosses/<%=moss._id%>?_method=DELETE" method="POST">
+        <button type="submit">Delete <%=moss.division%></button></form>
+      <% } %>
 
   </div>
 </body>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>Login Page</title>
+</head>
+
+<body>
+    <div class="main">
+        <a id="nav-links" href="/">Home</a>
+        <h1>Login</h1>
+        <form action="/auth/sign-in" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" />
+            <br>
+            <label for="password" name="password" id="password">Password</label>
+            <input type="password" name="password" id="password" />
+            <br>
+            <button type="submit">Sign-in</button>
+
+            <!--! Below is literally the same as button -->
+            <!-- <input type="submit" value="Sign in" /> -->
+        </form>
+    </div>
+</body>
+
+</html>
