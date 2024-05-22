@@ -28,6 +28,7 @@ router.post("/sign-up", async (req, res) => {
         return res.send("Passwords do not match.")
     }
     // - password validation (x chars long, special symbol, etc.)
+    
     // ! REGEXP for at least one Uppercase
     const hasUpperCase = /[A-Z]/.test(req.body.password);
     if(!hasUpperCase) {
@@ -72,8 +73,8 @@ router.post("/sign-in", async (req, res) => {
     }
 
     req.session.user = {
-        username: userInDatabase.username
-
+        username: userInDatabase.username,
+        userId: userInDatabase._id
     }
 
     res.redirect('/')

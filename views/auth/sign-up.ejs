@@ -10,7 +10,7 @@
 
 <body>
     <div class="main">
-        <a id="nav-links" href="/">Home</a>
+        <div><%- include('../partials/nav.ejs') %></div>
         <h1>Register</h1>
         <h2>Create a new account:</h2>
         <form action="/auth/sign-up" method="POST">

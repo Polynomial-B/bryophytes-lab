@@ -35,16 +35,11 @@
         <%= moss.division %> with a <%= moss.growthForm %> growth form.
       </div>
 
-      <% moss.reviews.forEach(review => { %>
-          <li>
-            <p> <%= review.text %> </p>
-          </li>
-          <% }) %>
       <br>
       
       <% if (user) { %>
         <a href="/mosses/<%=moss._id%>/edit">Edit</a>
-        <a href="/mosses/<%=moss._id%>/reviews">Reviews</a>
+        <a href="/mosses/<%=moss._id%>/reviews">Review Me</a>
       <form id="delete" action="/mosses/<%=moss._id%>?_method=DELETE" method="POST">
         <button type="submit">Delete <%=moss.division%></button></form>
       <% } %>

@@ -10,7 +10,7 @@
 
 <body>
     <div class="main">
-        <a id="nav-links" href="/">Home</a>
+        <div><%- include('../partials/nav.ejs') %></div>
         <h1>Login</h1>
         <form action="/auth/sign-in" method="POST">
             <label for="username">Username:</label>
